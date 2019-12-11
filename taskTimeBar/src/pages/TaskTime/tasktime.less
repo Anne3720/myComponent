@@ -1,0 +1,186 @@
+.timeContainer{
+    height: 735px;
+    display: flex;
+    background: #FFF;
+    .top{
+        height: 60px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #F0F0F0;
+        flex-shrink: 0;
+    }
+    /*滚动条样式*/
+    .scrollBar{
+        &::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 6px; /*高宽分别对应横竖滚动条的尺寸*/
+            height: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块样式*/
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 0 5px #F6F5FB;
+            background: #8C8C8C;
+        }
+        &::-webkit-scrollbar-track {
+            /*滚动条里面轨道样式*/
+            -webkit-box-shadow: inset 0 0 5px #F6F5FB;
+            border-radius: 0;
+            background: #E5E5E5;
+        }
+        &::-webkit-scrollbar-corner{
+            background: #E5E5E5;
+        }
+    }
+
+    .scrollBarHidden{
+        &::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 0; /*高宽分别对应横竖滚动条的尺寸*/
+            height: 0;
+        }        
+    }
+
+    .leftAside{
+        width: 300px;
+        height: 100%;
+        border-right: 1px solid #F0F0F0;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        .selectBox{
+            padding: 19px 16px;
+            .dropdownLink{
+                color: rgba(0, 0, 0, 0.65);
+                &:hover{
+                    color: #1B9AEE;
+                }
+            }
+        }
+        .menuBox{
+            flex-grow: 1;
+            overflow-y: scroll;
+            .menuWrapper{
+                padding: 10px 0;
+                .navMenu{
+                    padding: 0;
+                    margin: 0;
+                    line-height: 20px;
+                    .menuTitle{
+                        font-weight: 700;
+                        color: #383838;
+                        padding: 5px 26px 5px 20px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        cursor: pointer;
+                        .menuIcon{
+                            &:hover{
+                                color: #1B9AEE;
+                            }
+                        }
+                        &>span{
+                            padding: 0 4px;
+                        }
+                    }
+                    .subNavMenu{
+                        padding-left: 0;
+                        &>li{
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            padding: 5px 26px 5px 40px;
+                            cursor: pointer;
+                            &.onHover{
+                                background: rgba(0,0,0,.04);
+                                color: #1B9AEE;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .rightMain{
+        flex-grow: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        .timeBox{
+            overflow-x:scroll;
+            .monthWrapper{
+                height: 30px;
+                border-bottom: 1px solid #F0F0F0;
+            }
+            .dayWrapper{
+                height: 30px;
+            }
+            .timeItem{
+                float: left;
+                box-sizing: border-box;
+                border-right: 1px solid #F0F0F0;
+                text-align: center;
+                .yearBox{
+                    line-height: 60px;
+                }
+                .monthBox{
+                    line-height: 30px;
+                    text-align: left;
+                    margin-left: 6px;
+                }
+                .dateBox{
+                    line-height: 30px;
+                }
+            }
+        }
+        .timeBarBox{
+            flex-grow: 1;
+            overflow: scroll;
+            position: relative;
+            .bgTimeBar{
+                &>div{
+                    padding: 10px 0;
+                    float: left;
+                    box-sizing: border-box;
+                    border-right: 1px solid #F0F0F0;
+                }
+
+            }
+            .todayBar{
+                position: absolute;
+                top: 0;
+                background: #D1EBFC;
+            }
+            .timeBar{
+                position: absolute;
+                left: 0;
+                top: 0;
+                padding: 10px 0;
+                .timeBarItem{
+                    box-sizing: border-box;
+                    padding-top: 7px;
+                    height: 30px;
+                    width: 100%;
+                    &.onHover{
+                        background: rgba(0,0,0,.04);
+                    }
+                    .timeInner{
+                        box-sizing: border-box;
+                        height: 12px;
+                        border-width: 8px 4px 5px;
+                        border-color: #1B9AEE #1B9AEE transparent;
+                        border-top-left-radius: 2px;
+                        border-top-right-radius: 2px;
+                        border-style: solid;
+                        cursor: pointer;
+                    }
+                    .subTimeInner{
+                        border-radius: 2px;
+                        background: #87D2FF;
+                        height: 16px;
+                        cursor: pointer;                        
+                    }
+                }
+            }
+        }        
+    }
+}
