@@ -1,0 +1,93 @@
+<template>
+    <div class='footerBox'>
+        <div class="op" @click="toggleShow"><i :class="opclass"></i></div>
+        <div class="outer"  v-show="this.carouselOpen">
+            <div id="con1" ref="con1" :class="{anim:animate==true}">
+                <div v-for='(item,index) in items' :key="index" >{{item.name}}</div>
+            </div>
+        </div>
+    </div>
+    
+</template>
+<script>
+let timer = null
+export default {
+    data(){
+        return {
+            carouselOpen: false,
+            animate:false,
+            items:[
+                {name:"账号x16562856745新建任务1"},
+                {name:"账号xxxx16562856745新建任务2"},
+                {name:"账号yyyy16562856745新建任务3"},
+                {name:"账号zzz16562856745新建任务4"},
+                {name:"账号oooo16562856745新建任务5"},
+                {name:"账号ppppp16562856745新建任务6"},
+            ],
+        }
+    },
+    computed: {
+        opclass(){
+            if (this.carouselOpen) {
+                return 'el-icon-arrow-down'
+            }else{
+                return 'el-icon-arrow-up'
+            }
+        },
+    },
+    methods: {
+        toggleShow(){
+            this.carouselOpen = !this.carouselOpen
+            this.$nextTick(() => {
+                this.$emit('toggleShow',this.carouselOpen)
+                if (this.carouselOpen) {
+                    this.startScroll()
+                }else{
+                    this.stopScroll()
+                }
+            })            
+        },
+		startScroll() {
+			timer = setInterval(this.scroll, 3000);
+		},
+		stopScroll() {
+			clearInterval(timer);
+		},
+		scroll() {
+			this.animate = true;
+			setTimeout(() => { //  这里直接使用了es6的箭头函数，省去了处理this指向偏移问题，代码也比之前简化了很多
+				let item = this.items.pop(); // 删除数组的第一个元素
+				this.items.unshift(item); // 将数组的第一个元素添加到数组的末尾
+				this.animate = false; // 取消过渡动画，实现无缝滚动
+			}, 1500);
+		},
+    },
+}
+</script>
+<style>
+.op{
+    text-align: center;
+}
+.anim{
+    top: 0px !important;
+    transition: top 1s;
+}
+.outer{
+    height: 150px;
+    overflow: hidden;
+}
+#con1{
+    position: relative;
+    top: -30px;
+}
+#con1>div{
+    list-style: none;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+}
+#con1>div:nth-child(1){
+    color: rgb(197, 84, 84);
+}
+</style>
+
